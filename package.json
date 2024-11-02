@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node ./dist/server.js",
-    "start:dev": "ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "start:dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "lint": "eslint --ext .js,.ts",
+    "lint:fix": "eslint --fix --ext .js,.ts,.jsx"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +23,15 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.14.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.8.6",
-    "typescript": "^5.6.3"
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "eslint": "^9.14.0",
+    "globals": "^15.11.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.12.2"
   }
 }
