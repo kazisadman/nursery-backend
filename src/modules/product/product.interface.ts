@@ -7,3 +7,8 @@ export type TProduct = {
   rating: number;
   image: string;
 };
+
+export type TUpdateProductPayload = {
+  _id: string;
+  data: Partial<TProduct>;
+};

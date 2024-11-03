@@ -10,8 +10,62 @@ const createProduct = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(
-      new responseHandler(200, true, result, "Product Creted Successfully")
+      new responseHandler(200, true, result, "Product Created Successfully")
     );
 });
 
-export const productController = { createProduct };
+const getAllProducts = asyncHandler(async (_, res) => {
+  const result = await productService.getAllProducts();
+  res
+    .status(200)
+    .json(
+      new responseHandler(200, true, result, "Products Fetched Successfully")
+    );
+});
+
+const getProductById = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  const result = await productService.getProductById(_id);
+  res
+    .status(200)
+    .json(
+      new responseHandler(200, true, result, "Product Fetched Successfully")
+    );
+});
+
+const deleteProduct = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  const result = await productService.deleteProduct(_id);
+  res
+    .status(200)
+    .json(
+      new responseHandler(200, true, result, "Product Deleted Successfully")
+    );
+});
+
+const updateProduct = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+
+  const validateData = ProductValidation.partial().parse(req.body);
+
+  const payload = {
+    _id,
+    data: validateData,
+  };
+
+  const result = await productService.updateProduct(payload);
+
+  res
+    .status(200)
+    .json(
+      new responseHandler(200, true, result, "Product Updated Successfully")
+    );
+});
+
+export const productController = {
+  createProduct,
+  getAllProducts,
+  getProductById,
+  deleteProduct,
+  updateProduct,
+};
