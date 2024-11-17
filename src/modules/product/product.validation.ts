@@ -7,6 +7,7 @@ const ProductValidation = z.object({
   image: z.string().url("Image must be a valid url"),
   price: z.number().nonnegative({ message: "Price can not be negetive" }),
   quantity: z.number().nonnegative({ message: "Price can not be negetive" }),
+  popular: z.boolean(),
   rating: z
     .number()
     .nonnegative({ message: "Rating can not be negetive" })

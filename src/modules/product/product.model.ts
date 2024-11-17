@@ -37,6 +37,11 @@ const ProductSchema = new Schema<TProduct>({
     min: 0,
     max: 5,
   },
+  popular: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 const Product = mongoose.model("Product", ProductSchema);

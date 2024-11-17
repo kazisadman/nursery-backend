@@ -6,9 +6,24 @@ const createProduct = async (payload: TProduct) => {
   return data;
 };
 
-const getAllProducts = async () => {
-  const data = await Product.find();
-  return data;
+const getAllProducts = async (queryTerm: string) => {
+  if (queryTerm) {
+    const data = await Product.aggregate([
+      {
+        $search: {
+          index:"product_search",
+          text: {
+            query: queryTerm,
+            path: ["title", "description","category"],
+          },
+        },
+      },
+    ]);
+    return data;
+  } else {
+    const data = await Product.find();
+    return data;
+  }
 };
 
 const getProductById = async (payload: string) => {

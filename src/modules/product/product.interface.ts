@@ -6,6 +6,7 @@ export type TProduct = {
   description: string;
   rating: number;
   image: string;
+  popular:boolean;
 };
 
 export type TUpdateProductPayload = {
